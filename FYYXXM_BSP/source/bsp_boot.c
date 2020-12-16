@@ -20,8 +20,8 @@ void BSP_JumpToApp(void)
     /* Disable CPU L1 cache before jumping to the QSPI code execution */
     BSP_CPUCacheDisable();
     /* Disable Systick interrupt */
-
-    BSP_Disable_IRQ();
+    __disable_irq();
+//    BSP_Disable_IRQ();
     SysTick->CTRL = 0;
     /* Initialize user application's Stack Pointer & Jump to user application */
     JumpToApplication = (pFunction)(*(__IO uint32_t *)(APPLICATION_ADDRESS + 4));
